@@ -1,0 +1,14 @@
+--- wxWidgets-3.1.0/wx-config.in.omv~	2016-03-23 23:00:17.304708089 +0100
++++ wxWidgets-3.1.0/wx-config.in	2016-03-23 23:02:53.353771538 +0100
+@@ -1287,6 +1287,11 @@ else
+     _include_cppflags="-I${includedir}"
+ fi
+ 
++# We also need to add Qt's include directories so wxQt headers can
++# #include Qt base classes...
++_include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Core`"
++[ "$using_gui" = "yes" ] && _include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Widgets Qt5Gui`"
++
+ _cppflags=`echo "-I${libdir}/wx/include/@TOOLCHAIN_FULLNAME@" $_include_cppflags "@WXCONFIG_CPPFLAGS@" $_gui_cppflags`
+ 
+ # now without further ado, we can answer these too.

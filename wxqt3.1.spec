@@ -11,6 +11,7 @@ Group:		System/Libraries
 Url:		http://www.wxwidgets.org/
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{oname}-%{version}.tar.bz2
 Patch0:		wxWidgets-3.0.0-locales.patch
+Patch1:		wxQt-3.1.0-wxconfig-includes.patch
 # abi check is useless as it reports different abi used between clang and gcc
 # however clang just hard codes a def to an old abi version, its not actually
 # a different abi
