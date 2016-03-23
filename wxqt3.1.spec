@@ -23,7 +23,11 @@ BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
+BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5OpenGL)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(sdl)
@@ -389,6 +393,11 @@ Requires:	%{libwx_qtu_webview} = %{EVRD}
 %endif
 Requires:	%{libwx_qtu_xrc} = %{EVRD}
 Provides:	wxqtu%{api}-devel = %{EVRD}
+Requires:	pkgconfig(Qt5Core)
+Requires:	pkgconfig(Qt5Gui)
+Requires:	pkgconfig(Qt5Widgets)
+Requires:	pkgconfig(Qt5OpenGL)
+Requires:	pkgconfig(Qt5Test)
 
 %description -n %{libnameudev}
 Header files for the unicode enabled version of wxQt, the Qt port of

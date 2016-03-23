@@ -6,8 +6,8 @@
  
 +# We also need to add Qt's include directories so wxQt headers can
 +# #include Qt base classes...
-+_include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Core`"
-+[ "$using_gui" = "yes" ] && _include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Widgets Qt5Gui`"
++_include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Core Qt5Test`"
++[ "$using_gui" = "yes" ] && _include_cppflags="$_include_cppflags `pkg-config --cflags Qt5Widgets Qt5Gui Qt5OpenGL`"
 +
  _cppflags=`echo "-I${libdir}/wx/include/@TOOLCHAIN_FULLNAME@" $_include_cppflags "@WXCONFIG_CPPFLAGS@" $_gui_cppflags`
  
