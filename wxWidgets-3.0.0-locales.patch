@@ -1,0 +1,108 @@
+diff -urN wxWidgets-3.0.0/build/bakefiles/wx.bkl wxWidgets-3.0.0-patched/build/bakefiles/wx.bkl
+--- wxWidgets-3.0.0/build/bakefiles/wx.bkl	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/build/bakefiles/wx.bkl	2013-11-12 20:00:09.635517797 +1100
+@@ -137,7 +137,7 @@
+         <using module="gettext"/>
+         <gettext-catalogs id="locale">
+             <srcdir>$(SRCDIR)/locale</srcdir>
+-            <catalog-name>wxstd</catalog-name>
++            <catalog-name>wxstd-$(WX_RELEASE)</catalog-name>
+             <linguas>
+                 ca cs da de el es fi fr hu id it ja nl pl ru sl sv tr uk
+                 zh zh_CN zh_TW
+@@ -146,7 +146,7 @@
+         </gettext-catalogs>
+         <gettext-catalogs id="locale_msw">
+             <srcdir>$(SRCDIR)/locale/msw</srcdir>
+-            <catalog-name>wxmsw</catalog-name>
++            <catalog-name>wxmsw-$(WX_RELEASE)</catalog-name>
+             <linguas>it</linguas>
+             <install-to>$(LOCALEDIR)</install-to>
+         </gettext-catalogs>
+diff -urN wxWidgets-3.0.0/include/wx/translation.h wxWidgets-3.0.0-patched/include/wx/translation.h
+--- wxWidgets-3.0.0/include/wx/translation.h	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/include/wx/translation.h	2013-11-12 20:01:33.513902108 +1100
+@@ -136,7 +136,7 @@
+     wxString GetBestTranslation(const wxString& domain,
+                                 const wxString& msgIdLanguage = "en");
+ 
+-    // add standard wxWidgets catalog ("wxstd")
++    // add standard wxWidgets catalog ("wxstd-3.0")
+     bool AddStdCatalog();
+ 
+     // add catalog with given domain name and language, looking it up via
+diff -urN wxWidgets-3.0.0/interface/wx/translation.h wxWidgets-3.0.0-patched/interface/wx/translation.h
+--- wxWidgets-3.0.0/interface/wx/translation.h	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/interface/wx/translation.h	2013-11-12 20:02:26.496776313 +1100
+@@ -137,7 +137,7 @@
+                                 const wxString& msgIdLanguage = "en");
+ 
+     /**
+-        Add standard wxWidgets catalogs ("wxstd" and possible port-specific
++        Add standard wxWidgets catalogs ("wxstd-3.0" and possible port-specific
+         catalogs).
+ 
+         @return @true if a suitable catalog was found, @false otherwise
+diff -urN wxWidgets-3.0.0/Makefile.in wxWidgets-3.0.0-patched/Makefile.in
+--- wxWidgets-3.0.0/Makefile.in	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/Makefile.in	2013-11-12 19:58:32.609915981 +1100
+@@ -16109,14 +16109,14 @@
+ 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l ; \
+ 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES ; \
+ 	if test -f $(srcdir)/locale/$$l.mo ; then \
+-	$(INSTALL_DATA) $(srcdir)/locale/$$l.mo $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd.mo ; \
++	$(INSTALL_DATA) $(srcdir)/locale/$$l.mo $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd-$(WX_RELEASE).mo ; \
+ 	fi ; \
+ 	done
+ 
+ locale_uninstall: 
+ 	for l in $(LOCALE_LINGUAS) ; do \
+-	if test -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd.mo ; then \
+-	rm -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd.mo ; \
++	if test -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd-$(WX_RELEASE).mo ; then \
++	rm -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxstd-$(WX_RELEASE).mo ; \
+ 	fi ; \
+ 	done
+ 
+@@ -16126,14 +16126,14 @@
+ 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l ; \
+ 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES ; \
+ 	if test -f $(srcdir)/locale/msw/$$l.mo ; then \
+-	$(INSTALL_DATA) $(srcdir)/locale/msw/$$l.mo $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw.mo ; \
++	$(INSTALL_DATA) $(srcdir)/locale/msw/$$l.mo $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw-$(WX_RELEASE).mo ; \
+ 	fi ; \
+ 	done
+ 
+ locale_msw_uninstall: 
+ 	for l in $(LOCALE_MSW_LINGUAS) ; do \
+-	if test -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw.mo ; then \
+-	rm -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw.mo ; \
++	if test -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw-$(WX_RELEASE).mo ; then \
++	rm -f $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/wxmsw-$(WX_RELEASE).mo ; \
+ 	fi ; \
+ 	done
+ 
+diff -urN wxWidgets-3.0.0/samples/internat/internat.cpp wxWidgets-3.0.0-patched/samples/internat/internat.cpp
+--- wxWidgets-3.0.0/samples/internat/internat.cpp	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/samples/internat/internat.cpp	2013-11-12 20:03:32.104858607 +1100
+@@ -251,7 +251,7 @@
+ 
+     // Now try to add wxstd.mo so that loading "NOTEXIST.ING" file will produce
+     // a localized error message:
+-    m_locale.AddCatalog("wxstd");
++    m_locale.AddCatalog("wxstd-3.0");
+         // NOTE: it's not an error if we couldn't find it!
+ 
+     // this catalog is installed in standard location on Linux systems and
+diff -urN wxWidgets-3.0.0/src/common/translation.cpp wxWidgets-3.0.0-patched/src/common/translation.cpp
+--- wxWidgets-3.0.0/src/common/translation.cpp	2013-11-12 00:10:39.000000000 +1100
++++ wxWidgets-3.0.0-patched/src/common/translation.cpp	2013-11-12 20:04:09.709478835 +1100
+@@ -1458,7 +1458,7 @@
+ 
+ bool wxTranslations::AddStdCatalog()
+ {
+-    if ( !AddCatalog(wxS("wxstd")) )
++    if ( !AddCatalog(wxS("wxstd-3.0")) )
+         return false;
+ 
+     // there may be a catalog with toolkit specific overrides, it is not
