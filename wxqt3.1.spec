@@ -36,6 +36,9 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xinerama)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(cppunit)
+# For wxGraphicsContext
+BuildRequires:	pkgconfig(cairo)
 
 %description
 wxWidgets is a free C++ library for cross-platform GUI development.
@@ -457,6 +460,7 @@ CXXFLAGS="%{optflags} -fno-strict-aliasing"
 
 %configure --enable-unicode \
 	--enable-compat28 \
+	--enable-stl \
 	--without-odbc \
 	--with-opengl \
 	--with-qt \
