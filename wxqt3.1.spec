@@ -460,7 +460,6 @@ CXXFLAGS="%{optflags} -fno-strict-aliasing"
 
 %configure --enable-unicode \
 	--enable-compat28 \
-	--enable-stl \
 	--without-odbc \
 	--with-opengl \
 	--with-qt \
