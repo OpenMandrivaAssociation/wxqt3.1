@@ -1,11 +1,11 @@
 %define		oname	wxWidgets
 %define		api	3.1
-%define		major	0
+%define		major	1
 
 Summary:	Qt port of the wxWidgets library
 Name:		wxqt%{api}
-Version:	3.1.0
-Release:	2
+Version:	3.1.1
+Release:	1
 License:	wxWidgets Library Licence
 Group:		System/Libraries
 Url:		http://www.wxwidgets.org/
@@ -458,7 +458,7 @@ sed -i -e 's|/lib|/%{_lib}|' src/unix/stdpaths.cpp
 CFLAGS="%{optflags} -fno-strict-aliasing"
 CXXFLAGS="%{optflags} -fno-strict-aliasing"
 
-%configure --enable-unicode \
+%configure --disable-option-checking --enable-unicode \
 	--enable-compat28 \
 	--without-odbc \
 	--with-opengl \
