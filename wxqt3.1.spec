@@ -5,7 +5,7 @@
 Summary:	Qt port of the wxWidgets library
 Name:		wxqt%{api}
 Version:	3.1.1
-Release:	1
+Release:	2
 License:	wxWidgets Library Licence
 Group:		System/Libraries
 Url:		http://www.wxwidgets.org/
