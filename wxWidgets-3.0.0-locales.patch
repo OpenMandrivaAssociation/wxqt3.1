@@ -1,6 +1,6 @@
-diff -urN wxWidgets-3.0.0/build/bakefiles/wx.bkl wxWidgets-3.0.0-patched/build/bakefiles/wx.bkl
---- wxWidgets-3.0.0/build/bakefiles/wx.bkl	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/build/bakefiles/wx.bkl	2013-11-12 20:00:09.635517797 +1100
+diff -up wxWidgets-3.1.2/build/bakefiles/wx.bkl.0000~ wxWidgets-3.1.2/build/bakefiles/wx.bkl
+--- wxWidgets-3.1.2/build/bakefiles/wx.bkl.0000~	2018-12-09 16:40:08.000000000 +0100
++++ wxWidgets-3.1.2/build/bakefiles/wx.bkl	2019-03-30 01:18:43.528686522 +0100
 @@ -137,7 +137,7 @@
          <using module="gettext"/>
          <gettext-catalogs id="locale">
@@ -19,34 +19,34 @@ diff -urN wxWidgets-3.0.0/build/bakefiles/wx.bkl wxWidgets-3.0.0-patched/build/b
              <linguas>it</linguas>
              <install-to>$(LOCALEDIR)</install-to>
          </gettext-catalogs>
-diff -urN wxWidgets-3.0.0/include/wx/translation.h wxWidgets-3.0.0-patched/include/wx/translation.h
---- wxWidgets-3.0.0/include/wx/translation.h	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/include/wx/translation.h	2013-11-12 20:01:33.513902108 +1100
-@@ -136,7 +136,7 @@
-     wxString GetBestTranslation(const wxString& domain,
-                                 const wxString& msgIdLanguage = "en");
+diff -up wxWidgets-3.1.2/include/wx/translation.h.0000~ wxWidgets-3.1.2/include/wx/translation.h
+--- wxWidgets-3.1.2/include/wx/translation.h.0000~	2019-03-30 01:18:43.528686522 +0100
++++ wxWidgets-3.1.2/include/wx/translation.h	2019-03-30 01:23:01.445415792 +0100
+@@ -151,7 +151,7 @@ public:
+     wxArrayString GetAcceptableTranslations(const wxString& domain,
+                                             const wxString& msgIdLanguage = "en");
  
 -    // add standard wxWidgets catalog ("wxstd")
 +    // add standard wxWidgets catalog ("wxstd-3.0")
      bool AddStdCatalog();
  
      // add catalog with given domain name and language, looking it up via
-diff -urN wxWidgets-3.0.0/interface/wx/translation.h wxWidgets-3.0.0-patched/interface/wx/translation.h
---- wxWidgets-3.0.0/interface/wx/translation.h	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/interface/wx/translation.h	2013-11-12 20:02:26.496776313 +1100
-@@ -137,7 +137,7 @@
-                                 const wxString& msgIdLanguage = "en");
+diff -up wxWidgets-3.1.2/interface/wx/translation.h.0000~ wxWidgets-3.1.2/interface/wx/translation.h
+--- wxWidgets-3.1.2/interface/wx/translation.h.0000~	2019-03-30 01:18:43.528686522 +0100
++++ wxWidgets-3.1.2/interface/wx/translation.h	2019-03-30 01:23:29.056663345 +0100
+@@ -165,7 +165,7 @@ public:
+                                             const wxString& msgIdLanguage = "en");
  
-     /**
+         /**
 -        Add standard wxWidgets catalogs ("wxstd" and possible port-specific
 +        Add standard wxWidgets catalogs ("wxstd-3.0" and possible port-specific
          catalogs).
  
          @return @true if a suitable catalog was found, @false otherwise
-diff -urN wxWidgets-3.0.0/Makefile.in wxWidgets-3.0.0-patched/Makefile.in
---- wxWidgets-3.0.0/Makefile.in	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/Makefile.in	2013-11-12 19:58:32.609915981 +1100
-@@ -16109,14 +16109,14 @@
+diff -up wxWidgets-3.1.2/Makefile.in.0000~ wxWidgets-3.1.2/Makefile.in
+--- wxWidgets-3.1.2/Makefile.in.0000~	2018-12-09 16:40:08.000000000 +0100
++++ wxWidgets-3.1.2/Makefile.in	2019-03-30 01:18:43.534686596 +0100
+@@ -14649,14 +14649,14 @@ locale_install:
  	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l ; \
  	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES ; \
  	if test -f $(srcdir)/locale/$$l.mo ; then \
@@ -64,7 +64,7 @@ diff -urN wxWidgets-3.0.0/Makefile.in wxWidgets-3.0.0-patched/Makefile.in
  	fi ; \
  	done
  
-@@ -16126,14 +16126,14 @@
+@@ -14666,14 +14666,14 @@ locale_msw_install:
  	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l ; \
  	$(INSTALL_DIR) $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES ; \
  	if test -f $(srcdir)/locale/msw/$$l.mo ; then \
@@ -82,10 +82,10 @@ diff -urN wxWidgets-3.0.0/Makefile.in wxWidgets-3.0.0-patched/Makefile.in
  	fi ; \
  	done
  
-diff -urN wxWidgets-3.0.0/samples/internat/internat.cpp wxWidgets-3.0.0-patched/samples/internat/internat.cpp
---- wxWidgets-3.0.0/samples/internat/internat.cpp	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/samples/internat/internat.cpp	2013-11-12 20:03:32.104858607 +1100
-@@ -251,7 +251,7 @@
+diff -up wxWidgets-3.1.2/samples/internat/internat.cpp.0000~ wxWidgets-3.1.2/samples/internat/internat.cpp
+--- wxWidgets-3.1.2/samples/internat/internat.cpp.0000~	2018-12-09 16:40:08.000000000 +0100
++++ wxWidgets-3.1.2/samples/internat/internat.cpp	2019-03-30 01:18:43.535686608 +0100
+@@ -260,7 +260,7 @@ bool MyApp::OnInit()
  
      // Now try to add wxstd.mo so that loading "NOTEXIST.ING" file will produce
      // a localized error message:
@@ -94,10 +94,10 @@ diff -urN wxWidgets-3.0.0/samples/internat/internat.cpp wxWidgets-3.0.0-patched/
          // NOTE: it's not an error if we couldn't find it!
  
      // this catalog is installed in standard location on Linux systems and
-diff -urN wxWidgets-3.0.0/src/common/translation.cpp wxWidgets-3.0.0-patched/src/common/translation.cpp
---- wxWidgets-3.0.0/src/common/translation.cpp	2013-11-12 00:10:39.000000000 +1100
-+++ wxWidgets-3.0.0-patched/src/common/translation.cpp	2013-11-12 20:04:09.709478835 +1100
-@@ -1458,7 +1458,7 @@
+diff -up wxWidgets-3.1.2/src/common/translation.cpp.0000~ wxWidgets-3.1.2/src/common/translation.cpp
+--- wxWidgets-3.1.2/src/common/translation.cpp.0000~	2018-12-09 16:40:08.000000000 +0100
++++ wxWidgets-3.1.2/src/common/translation.cpp	2019-03-30 01:18:43.535686608 +0100
+@@ -1527,7 +1527,7 @@ wxArrayString wxTranslations::GetAvailab
  
  bool wxTranslations::AddStdCatalog()
  {
