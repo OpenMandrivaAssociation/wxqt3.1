@@ -30,7 +30,7 @@ BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libtiff-4)
-BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xinerama)
@@ -227,6 +227,9 @@ linked with the unicode enabled version of %{name}.
 
 %files -n %{libwx_qtu_media}
 %{_libdir}/libwx_qtu_media-%{api}.so.%{major}*
+%dir %{_libdir}/wx
+%dir %{_libdir}/wx/%{version}
+%{_libdir}/wx/%{version}/sound_sdlu-%{version}.so
 
 #----------------------------------------------------------------------------
 
@@ -470,24 +473,213 @@ CXXFLAGS="%{optflags} -fno-strict-aliasing"
 	--with-libjpeg=sys \
 	--with-libtiff=sys \
 	--with-zlib=sys \
-	--disable-optimise \
+	--with-regex=sys \
+	--with-liblzma=sys \
+	--with-expat=sys \
+	--with-cxx=17 \
+	--enable-plugins \
+	--enable-cxx11 \
+	--enable-utf8 \
+	--enable-repro-build \
+	--enable-pch \
+	--enable-intl \
+	--enable-xlocale \
+	--enable-config \
+	--enable-protocols \
+	--enable-ftp \
+	--enable-http \
+	--enable-fileproto \
+	--enable-sockets \
+	--enable-ipv6 \
+	--enable-dataobj \
+	--enable-ipc \
+	--enable-baseevtloop \
+	--enable-epollloop \
+	--enable-selectloop \
+	--enable-any \
+	--enable-arcstream \
+	--enable-base64 \
+	--enable-backtrace \
+	--enable-cmdline \
+	--enable-datetime \
+	--enable-debugreport \
+	--enable-dialupman \
+	--enable-dynlib \
+	--enable-dynamicloader \
+	--enable-exceptions \
+	--enable-ffile \
+	--enable-file \
+	--enable-filehistory \
+	--enable-filesystem \
+	--enable-fontenum \
+	--enable-fontmap \
+	--enable-fs_archive \
+	--enable-fs_inet \
+	--enable-fs_zip \
+	--enable-fsvolume \
+	--enable-fswatcher \
+	--enable-geometry \
+	--enable-log \
+	--enable-longlong \
+	--enable-mimetype \
+	--enable-printfposparam \
+	--enable-secretstore \
+	--enable-snglinst \
+	--enable-sound \
+	--enable-stdpaths \
+	--enable-stopwatch \
+	--enable-streams \
+	--enable-sysoptions \
+	--enable-tarstream \
+	--enable-textbuf \
+	--enable-textfile \
+	--enable-timer \
+	--enable-variant \
+	--enable-zipstream \
+	--enable-url \
+	--enable-protocol \
+	--enable-protocol-http \
+	--enable-protocol-ftp \
+	--enable-protocol-file \
+	--enable-threads \
+	--enable-docview \
+	--enable-help \
+	--enable-html \
+	--enable-htmlhelp \
+	--enable-xrc \
+	--enable-aui \
+	--enable-propgrid \
+	--enable-ribbon \
+	--enable-stc \
+	--enable-constraints \
+	--enable-loggui \
+	--enable-logwin \
+	--enable-logdialog \
+	--enable-mdi \
+	--enable-mdidoc \
+	--enable-mediactrl \
+	--enable-richtext \
+	--enable-postscript \
+	--enable-printarch \
+	--enable-svg \
+	--enable-webview \
+	--enable-graphics_ctx \
+	--enable-clipboard \
+	--enable-dnd \
+	--disable-controls \
+	--enable-markup \
+	--enable-accel \
+	--enable-actindicator \
+	--enable-addremovectrl \
+	--enable-animatectrl \
+	--enable-bannerwindow \
+	--enable-artstd \
+	--enable-bmpbutton \
+	--enable-bmpcombobox \
+	--enable-button \
 	--enable-calendar \
-	--enable-wave \
-	--enable-fraction \
-	--enable-wxprintfv \
-	--enable-xresources \
-	--enable-controls \
-	--enable-tabdialog \
-	--enable-msgdlg \
+	--enable-caret \
+	--enable-checkbox \
+	--enable-checklst \
+	--enable-choice \
+	--enable-choicebook \
+	--enable-collpane \
+	--enable-colourpicker \
+	--enable-combobox \
+	--enable-comboctrl \
+	--enable-commandlinkbutton \
+	--enable-dataviewctrl \
+	--enable-datepick \
+	--enable-detect_sm \
+	--enable-dirpicker \
+	--enable-display \
+	--enable-editablebox \
+	--enable-filectrl \
+	--enable-filepicker \
+	--enable-fontpicker \
+	--enable-gauge \
+	--enable-grid \
+	--enable-headerctrl \
+	--enable-hyperlink \
+	--enable-imaglist \
+	--enable-infobar \
+	--enable-listbook \
+	--enable-listbox \
+	--enable-listctrl \
+	--enable-notebook \
+	--enable-notifmsg \
+	--enable-odcombobox \
+	--enable-popupwin \
+	--enable-prefseditor \
+	--enable-privatefonts \
+	--enable-radiobox \
+	--enable-radiobtn \
+	--enable-richmsgdlg \
+	--enable-richtooltip \
+	--enable-rearrangectrl \
+	--enable-sash \
+	--enable-scrollbar \
+	--enable-searchctrl \
+	--enable-slider \
+	--enable-spinbtn \
+	--enable-spinctrl \
+	--enable-splitter \
+	--enable-statbmp \
+	--enable-statbox \
+	--enable-statline \
+	--enable-stattext \
+	--enable-statusbar \
+	--enable-taskbaricon \
+	--enable-tbarnative \
+	--enable-textctrl \
+	--enable-timepick \
+	--enable-tipwindow \
+	--enable-togglebtn \
+	--enable-toolbar \
+	--enable-toolbook \
+	--enable-treebook \
+	--enable-treectrl \
+	--enable-treelist \
+	--enable-commondlg \
+	--enable-aboutdlg \
+	--enable-choicedlg \
+	--enable-coldlg \
+	--enable-filedlg \
+	--enable-finddlg \
+	--enable-fontdlg \
 	--enable-dirdlg \
+	--enable-msgdlg \
 	--enable-numberdlg \
 	--enable-splash \
 	--enable-textdlg \
-	--enable-graphics_ctx \
-	--enable-grid \
-	--disable-catch_segvs \
-	--enable-mediactrl \
-	--enable-dataviewctrl
+	--enable-tipdlg \
+	--enable-progressdlg \
+	--enable-wizarddlg \
+	--enable-menus \
+	--enable-miniframe \
+	--enable-tooltips \
+	--enable-splines \
+	--enable-mousewheel \
+	--enable-validators \
+	--enable-busyinfo \
+	--enable-hotkey \
+	--enable-joystick \
+	--enable-metafiles \
+	--enable-dragimage \
+	--enable-uiactionsim \
+	--enable-dctransform \
+	--enable-webviewwebkit \
+	--enable-palette \
+	--enable-image \
+	--enable-gif \
+	--enable-pcx \
+	--enable-tga \
+	--enable-iff \
+	--enable-pnm \
+	--enable-xpm \
+	--enable-ico_cur \
+	--enable-autoidman
+
 
 %make
 
@@ -498,4 +690,3 @@ CXXFLAGS="%{optflags} -fno-strict-aliasing"
 %find_lang wxstd-%{api}
 %find_lang wxmsw-%{api}
 cat wxmsw-%{api}.lang >> wxstd-%{api}.lang
-
