@@ -1,10 +1,10 @@
 %define		oname	wxWidgets
-%define		api	3.1
-%define		major	2
+%define		api	%(echo %{version} |cut -d. -f1-2)
+%define		major	%(echo %{version} |cut -d. -f3)
 
 Summary:	Qt port of the wxWidgets library
 Name:		wxqt%{api}
-Version:	3.1.2
+Version:	3.1.4
 Release:	1
 License:	wxWidgets Library Licence
 Group:		System/Libraries
