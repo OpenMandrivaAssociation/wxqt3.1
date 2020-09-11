@@ -3,7 +3,7 @@
 %define		major	%(echo %{version} |cut -d. -f3)
 
 Summary:	Qt port of the wxWidgets library
-Name:		wxqt%{api}
+Name:		wxqt3.1
 Version:	3.1.4
 Release:	1
 License:	wxWidgets Library Licence
